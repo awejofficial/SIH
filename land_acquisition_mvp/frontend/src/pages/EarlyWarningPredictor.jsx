@@ -7,6 +7,8 @@ import StatutoryLifecycleTimeline from '../components/intelligence/StatutoryLife
 import AdministrativeDirectivesPanel from '../components/intelligence/AdministrativeDirectivesPanel'
 import InterventionSimulatorPanel from '../components/intelligence/InterventionSimulatorPanel'
 import ProjectIntelligenceCard from '../components/intelligence/ProjectIntelligenceCard'
+import RiskDriversPanel from '../components/intelligence/RiskDriversPanel'
+import EarlyWarningTelemetryCard from '../components/intelligence/EarlyWarningTelemetryCard'
 import {
   AlertTriangle,
   CheckCircle2,
@@ -113,6 +115,7 @@ export default function EarlyWarningPredictor() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
   const [prediction, setPrediction] = useState(null)
+  const interventionRef = useRef(null)
 
   // 3-State ML Model Health: null = checking, true = loaded, false = unavailable
   const [modelLoaded, setModelLoaded] = useState(null)
@@ -902,47 +905,62 @@ export default function EarlyWarningPredictor() {
         </div>
       )}
 
-      {/* Results Dashboard */}
+      {/* Results Dashboard - Structured Prediction Pipeline: Prediction -> Risk -> Why -> What can change -> Administrative response */}
       {prediction && (
         <div className="space-y-8 animate-fadeIn">
-          {/* 1. Custom Delay Probability & Multi-Modal Risk Card */}
+          {/* Stage 0: Early Warning Telemetry Card (Component 8) */}
+          <EarlyWarningTelemetryCard
+            prediction={prediction}
+            formData={formData}
+            onScrollToIntervention={() => interventionRef.current?.scrollIntoView({ behavior: 'smooth' })}
+          />
+
+          {/* Stage 1: Delay Probability & Multi-Modal Risk Continuum (Component 1 & 2) */}
           <DelayProbabilityCard prediction={prediction} />
 
-          {/* 2. Custom SHAP Attribution Matrix (Why is this project at risk?) */}
+          {/* Stage 2: Ranked Risk Drivers Contribution Bars (Component 3 - Why) */}
+          <RiskDriversPanel
+            topRiskDrivers={prediction.top_risk_drivers || []}
+            formData={formData}
+          />
+
+          {/* Stage 3: Bilateral SHAP Explainability Matrix (Component 4 - Why) */}
           <SHAPExplainabilityMatrix
             topRiskDrivers={prediction.top_risk_drivers || []}
             protectiveFactors={prediction.protective_factors || []}
             formData={formData}
           />
 
-          {/* 3. Custom Statutory Acquisition Lifecycle Timeline (RFCTLARR Act 2013) */}
+          {/* Stage 4: Acquisition Lifecycle Risk Progression (Component 5 - What can change) */}
           <StatutoryLifecycleTimeline
             stageRisks={prediction.stage_risks_list || prediction.stage_risks || []}
           />
 
-          {/* 4. Custom Administrative Directives Panel */}
+          {/* Stage 5: Intervention Impact Simulator (Component 7 - What can change) */}
+          <div ref={interventionRef}>
+            <InterventionSimulatorPanel
+              selectedFeature={whatifFeature}
+              onFeatureChange={(feat) => {
+                setWhatifFeature(feat)
+                if (feat === 'compensation_disbursed_pct') setWhatifValue(85)
+                else if (feat === 'legal_cases_count') setWhatifValue(1)
+                else if (feat === 'approval_days_pending') setWhatifValue(30)
+                else if (feat === 'possession_pct') setWhatifValue(80)
+                else if (feat === 'doc_deficiency_score') setWhatifValue(10)
+              }}
+              sliderValue={whatifValue}
+              onSliderChange={setWhatifValue}
+              onRunSimulation={handleRunWhatIf}
+              loading={whatifLoading}
+              whatifResult={whatifResult}
+              baselineData={formData}
+            />
+          </div>
+
+          {/* Stage 6: Statutory Administrative Directives Panel (Component 6 - Administrative Response) */}
           <AdministrativeDirectivesPanel
             recommendations={prediction.recommendations || []}
             dominantBottleneck={prediction.dominant_bottleneck}
-          />
-
-          {/* 5. Custom Intervention Impact Simulator (What-If Policy Lever Analysis) */}
-          <InterventionSimulatorPanel
-            selectedFeature={whatifFeature}
-            onFeatureChange={(feat) => {
-              setWhatifFeature(feat)
-              if (feat === 'compensation_disbursed_pct') setWhatifValue(85)
-              else if (feat === 'legal_cases_count') setWhatifValue(1)
-              else if (feat === 'approval_days_pending') setWhatifValue(30)
-              else if (feat === 'possession_pct') setWhatifValue(80)
-              else if (feat === 'doc_deficiency_score') setWhatifValue(10)
-            }}
-            sliderValue={whatifValue}
-            onSliderChange={setWhatifValue}
-            onRunSimulation={handleRunWhatIf}
-            loading={whatifLoading}
-            whatifResult={whatifResult}
-            baselineData={formData}
           />
 
           {/* 6. Intervention Logging */}

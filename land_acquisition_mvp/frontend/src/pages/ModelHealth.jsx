@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import api from '../services/api'
 import { useRole } from '../context/RoleContext'
+import ModelHealthCard from '../components/intelligence/ModelHealthCard'
 import {
   Cpu,
   ArrowRight,
@@ -11,8 +12,7 @@ import {
   BarChart2,
   RefreshCw,
   Lock,
-  Binary,
-  Check
+  Binary
 } from 'lucide-react'
 
 /**
@@ -147,87 +147,8 @@ export default function ModelHealth() {
         </div>
       ) : modelHealth ? (
         <div className="space-y-8">
-          {/* Key Metrics Blocks */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
-            {/* Metric 1: ROC-AUC */}
-            <div className="bg-white border border-slate-200 p-4 rounded-xl shadow-xs space-y-1">
-              <div className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-500">
-                ROC-AUC Score
-              </div>
-              <div className="font-mono text-3xl font-black text-blue-700">
-                {modelHealth.roc_auc}
-              </div>
-              <div className="text-[10px] font-mono text-emerald-700 font-semibold flex items-center gap-1 pt-1">
-                <Check size={11} />
-                <span>&gt;0.80 Benchmark</span>
-              </div>
-            </div>
-
-            {/* Metric 2: Delay Recall */}
-            <div className="bg-white border border-slate-200 p-4 rounded-xl shadow-xs space-y-1">
-              <div className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-500">
-                Delay Recall
-              </div>
-              <div className="font-mono text-3xl font-black text-emerald-700">
-                {(modelHealth.recall * 100).toFixed(1)}%
-              </div>
-              <div className="text-[10px] text-slate-500">
-                Early Detection Focus
-              </div>
-            </div>
-
-            {/* Metric 3: Precision */}
-            <div className="bg-white border border-slate-200 p-4 rounded-xl shadow-xs space-y-1">
-              <div className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-500">
-                Precision
-              </div>
-              <div className="font-mono text-3xl font-black text-indigo-700">
-                {(modelHealth.precision * 100).toFixed(1)}%
-              </div>
-              <div className="text-[10px] text-slate-500">
-                Delay Class Precision
-              </div>
-            </div>
-
-            {/* Metric 4: F1 Score */}
-            <div className="bg-white border border-slate-200 p-4 rounded-xl shadow-xs space-y-1">
-              <div className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-500">
-                F1 Score
-              </div>
-              <div className="font-mono text-3xl font-black text-purple-700">
-                {modelHealth.f1_score}
-              </div>
-              <div className="text-[10px] text-slate-500">
-                Harmonic Mean
-              </div>
-            </div>
-
-            {/* Metric 5: Accuracy */}
-            <div className="bg-white border border-slate-200 p-4 rounded-xl shadow-xs space-y-1">
-              <div className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-500">
-                Accuracy
-              </div>
-              <div className="font-mono text-3xl font-black text-slate-900">
-                {(modelHealth.accuracy * 100).toFixed(1)}%
-              </div>
-              <div className="text-[10px] text-slate-500">
-                Overall Correct
-              </div>
-            </div>
-
-            {/* Metric 6: Test Samples */}
-            <div className="bg-white border border-slate-200 p-4 rounded-xl shadow-xs space-y-1">
-              <div className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-500">
-                Test Set (n)
-              </div>
-              <div className="font-mono text-3xl font-black text-slate-900">
-                {modelHealth.test_size}
-              </div>
-              <div className="text-[10px] font-mono text-slate-500">
-                Out-of-Sample Eval
-              </div>
-            </div>
-          </div>
+          {/* Custom SIH26017 Institutional Model Health & Governance Card */}
+          <ModelHealthCard modelHealth={modelHealth} />
 
           {/* Configuration & Confusion Matrix Row */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
