@@ -659,85 +659,122 @@ export default function EarlyWarningPredictor() {
         )}
       </div>
 
-      {/* Parameter Input Form */}
-      <div className="bg-white rounded-xl border border-gray-200 shadow-xs overflow-hidden">
-        <div className="border-b border-gray-200 bg-gray-50/70 px-6 py-4 flex items-center justify-between">
+      {/* Structured Parameter Input Workspace organized around: "Is this project likely to be delayed and why?" */}
+      <div className="bg-white rounded-2xl border border-slate-200 shadow-xs overflow-hidden">
+        {/* Form Institutional Header */}
+        <div className="border-b border-slate-200 bg-slate-50/80 px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
-            <h2 className="text-base font-bold text-gray-900">Current Project State Parameters (13 Features)</h2>
-            <p className="text-xs text-gray-500">Provide verifiable milestones known today. Outcome columns are strictly quarantined.</p>
+            <div className="flex items-center gap-2">
+              <h2 className="text-sm font-black uppercase tracking-wider text-slate-900">
+                Statutory Project State Parameters (13 Verifiable Features)
+              </h2>
+              <span className="text-[10px] font-mono font-bold bg-slate-200 text-slate-700 px-2 py-0.5 rounded">
+                Strict Zero-Leakage Contract
+              </span>
+            </div>
+            <p className="text-xs text-slate-500 font-mono mt-0.5">
+              Primary Decision: Is this project likely to be delayed and why? Future outcome labels quarantined.
+            </p>
           </div>
-          <span className="text-xs font-semibold px-2.5 py-1 bg-white border border-gray-200 rounded-md text-gray-600">
-            No Future Leakage
+          <span className="text-xs font-mono font-bold px-3 py-1 bg-white border border-slate-300 rounded-lg text-slate-700 shadow-2xs self-start sm:self-auto">
+            Input Schema: v2.4 (Pre-Award)
           </span>
         </div>
 
-        <form onSubmit={handlePredict} className="p-6 space-y-6">
-          {/* Categorical & Scale Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            <div>
-              <label className="block text-xs font-bold text-gray-700 mb-1.5">District</label>
-              <select
-                value={formData.district}
-                onChange={e => handleInputChange('district', e.target.value)}
-                className="w-full rounded-lg border border-gray-300 bg-white px-3.5 py-2 text-sm text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-400/20"
-              >
-                {['Pune', 'Mumbai', 'Nagpur', 'Nashik', 'Aurangabad'].map(d => (
-                  <option key={d} value={d}>{d}</option>
-                ))}
-              </select>
+        <form onSubmit={handlePredict} className="divide-y divide-slate-100">
+          {/* Band 1: Jurisdiction & Physical Scale */}
+          <div className="p-6 space-y-3 bg-white">
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-bold uppercase tracking-wider text-slate-700 flex items-center gap-2">
+                <span className="h-5 w-5 rounded-full bg-slate-100 text-slate-700 flex items-center justify-center text-[11px] font-mono font-bold border border-slate-300">
+                  1
+                </span>
+                <span>Jurisdiction & Project Scope</span>
+              </span>
+              <span className="text-[10px] font-mono text-slate-400">Pre-Declaration Baseline</span>
             </div>
 
-            <div>
-              <label className="block text-xs font-bold text-gray-700 mb-1.5">Project Sector Type</label>
-              <select
-                value={formData.project_type}
-                onChange={e => handleInputChange('project_type', e.target.value)}
-                className="w-full rounded-lg border border-gray-300 bg-white px-3.5 py-2 text-sm text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-400/20"
-              >
-                {['Highway', 'Railway', 'Metro', 'Irrigation'].map(pt => (
-                  <option key={pt} value={pt}>{pt}</option>
-                ))}
-              </select>
-            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-1">
+              <div>
+                <label className="block text-[11px] font-mono font-bold text-slate-700 mb-1">
+                  Revenue District
+                </label>
+                <select
+                  value={formData.district}
+                  onChange={e => handleInputChange('district', e.target.value)}
+                  className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-medium text-slate-900 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400/20"
+                >
+                  {['Pune', 'Mumbai', 'Nagpur', 'Nashik', 'Aurangabad'].map(d => (
+                    <option key={d} value={d}>{d}</option>
+                  ))}
+                </select>
+              </div>
 
-            <div>
-              <label className="block text-xs font-bold text-gray-700 mb-1.5">Total Land Area (Acres)</label>
-              <input
-                type="number"
-                step="any"
-                min="0"
-                required
-                value={formData.total_acres}
-                onChange={e => handleInputChange('total_acres', e.target.value)}
-                className="w-full rounded-lg border border-gray-300 px-3.5 py-2 text-sm text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-400/20"
-                placeholder="250"
-              />
-            </div>
+              <div>
+                <label className="block text-[11px] font-mono font-bold text-slate-700 mb-1">
+                  Sector Type
+                </label>
+                <select
+                  value={formData.project_type}
+                  onChange={e => handleInputChange('project_type', e.target.value)}
+                  className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-medium text-slate-900 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400/20"
+                >
+                  {['Highway', 'Railway', 'Metro', 'Irrigation'].map(pt => (
+                    <option key={pt} value={pt}>{pt}</option>
+                  ))}
+                </select>
+              </div>
 
-            <div>
-              <label className="block text-xs font-bold text-gray-700 mb-1.5">Affected Families (Count)</label>
-              <input
-                type="number"
-                min="0"
-                required
-                value={formData.affected_families}
-                onChange={e => handleInputChange('affected_families', e.target.value)}
-                className="w-full rounded-lg border border-gray-300 px-3.5 py-2 text-sm text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-400/20"
-                placeholder="180"
-              />
+              <div>
+                <label className="block text-[11px] font-mono font-bold text-slate-700 mb-1">
+                  Total Land Area (Acres)
+                </label>
+                <input
+                  type="number"
+                  step="any"
+                  min="0"
+                  required
+                  value={formData.total_acres}
+                  onChange={e => handleInputChange('total_acres', e.target.value)}
+                  className="w-full rounded-lg border border-slate-300 px-3 py-2 text-xs font-mono text-slate-900 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400/20"
+                  placeholder="250"
+                />
+              </div>
+
+              <div>
+                <label className="block text-[11px] font-mono font-bold text-slate-700 mb-1">
+                  Affected Families (Count)
+                </label>
+                <input
+                  type="number"
+                  min="0"
+                  required
+                  value={formData.affected_families}
+                  onChange={e => handleInputChange('affected_families', e.target.value)}
+                  className="w-full rounded-lg border border-slate-300 px-3 py-2 text-xs font-mono text-slate-900 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400/20"
+                  placeholder="180"
+                />
+              </div>
             </div>
           </div>
 
-          {/* Lifecycle Milestone Progress Percentages */}
-          <div className="border-t border-gray-100 pt-5">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-gray-400 mb-4">
-              Lifecycle Progress Milestones (%)
-            </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-              <div>
-                <div className="flex justify-between text-xs font-semibold text-gray-700 mb-1">
-                  <span>Land Acquired</span>
-                  <span className="font-bold text-blue-600">{formData.land_acquired_pct}%</span>
+          {/* Band 2: Statutory Milestone Progress Tracks */}
+          <div className="p-6 space-y-4 bg-slate-50/50">
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-bold uppercase tracking-wider text-slate-700 flex items-center gap-2">
+                <span className="h-5 w-5 rounded-full bg-slate-100 text-slate-700 flex items-center justify-center text-[11px] font-mono font-bold border border-slate-300">
+                  2
+                </span>
+                <span>Statutory Milestone Progress (% Completion)</span>
+              </span>
+              <span className="text-[10px] font-mono text-slate-400">RFCTLARR Act 2013 Verification</span>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-1">
+              <div className="p-3 bg-white rounded-xl border border-slate-200 space-y-2">
+                <div className="flex justify-between text-xs font-semibold text-slate-700">
+                  <span>Land Acquired / Demarcated</span>
+                  <span className="font-mono font-bold text-blue-700">{formData.land_acquired_pct}%</span>
                 </div>
                 <input
                   type="range"
@@ -745,14 +782,14 @@ export default function EarlyWarningPredictor() {
                   max="100"
                   value={formData.land_acquired_pct}
                   onChange={e => handleInputChange('land_acquired_pct', e.target.value)}
-                  className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
+                  className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-700"
                 />
               </div>
 
-              <div>
-                <div className="flex justify-between text-xs font-semibold text-gray-700 mb-1">
-                  <span>Compensation Disbursed</span>
-                  <span className="font-bold text-blue-600">{formData.compensation_disbursed_pct}%</span>
+              <div className="p-3 bg-white rounded-xl border border-slate-200 space-y-2">
+                <div className="flex justify-between text-xs font-semibold text-slate-700">
+                  <span>Compensation DBT Disbursed</span>
+                  <span className="font-mono font-bold text-blue-700">{formData.compensation_disbursed_pct}%</span>
                 </div>
                 <input
                   type="range"
@@ -760,14 +797,14 @@ export default function EarlyWarningPredictor() {
                   max="100"
                   value={formData.compensation_disbursed_pct}
                   onChange={e => handleInputChange('compensation_disbursed_pct', e.target.value)}
-                  className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
+                  className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-700"
                 />
               </div>
 
-              <div>
-                <div className="flex justify-between text-xs font-semibold text-gray-700 mb-1">
-                  <span>R&R Progress</span>
-                  <span className="font-bold text-blue-600">{formData.rnp_progress_pct}%</span>
+              <div className="p-3 bg-white rounded-xl border border-slate-200 space-y-2">
+                <div className="flex justify-between text-xs font-semibold text-slate-700">
+                  <span>R&R Resettlement Progress</span>
+                  <span className="font-mono font-bold text-blue-700">{formData.rnp_progress_pct}%</span>
                 </div>
                 <input
                   type="range"
@@ -775,14 +812,14 @@ export default function EarlyWarningPredictor() {
                   max="100"
                   value={formData.rnp_progress_pct}
                   onChange={e => handleInputChange('rnp_progress_pct', e.target.value)}
-                  className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
+                  className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-700"
                 />
               </div>
 
-              <div>
-                <div className="flex justify-between text-xs font-semibold text-gray-700 mb-1">
-                  <span>Physical Possession</span>
-                  <span className="font-bold text-blue-600">{formData.possession_pct}%</span>
+              <div className="p-3 bg-white rounded-xl border border-slate-200 space-y-2">
+                <div className="flex justify-between text-xs font-semibold text-slate-700">
+                  <span>Physical Possession (Sec 38)</span>
+                  <span className="font-mono font-bold text-blue-700">{formData.possession_pct}%</span>
                 </div>
                 <input
                   type="range"
@@ -790,59 +827,74 @@ export default function EarlyWarningPredictor() {
                   max="100"
                   value={formData.possession_pct}
                   onChange={e => handleInputChange('possession_pct', e.target.value)}
-                  className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
+                  className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-700"
                 />
               </div>
             </div>
           </div>
 
-          {/* Friction & Dispute Indicators */}
-          <div className="border-t border-gray-100 pt-5">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-gray-400 mb-4">
-              Dispute, Statutory & Delay Vectors
-            </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
+          {/* Band 3: Litigation, Declaration & Delay Vectors */}
+          <div className="p-6 space-y-3 bg-white">
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-bold uppercase tracking-wider text-slate-700 flex items-center gap-2">
+                <span className="h-5 w-5 rounded-full bg-slate-100 text-slate-700 flex items-center justify-center text-[11px] font-mono font-bold border border-slate-300">
+                  3
+                </span>
+                <span>Friction, Legal & Document Verification Vectors</span>
+              </span>
+              <span className="text-[10px] font-mono text-slate-400">Statutory Risk Impediments</span>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 pt-1">
               <div>
-                <label className="block text-xs font-bold text-gray-700 mb-1.5">Approval Days Pending</label>
+                <label className="block text-[11px] font-mono font-bold text-slate-700 mb-1">
+                  Approval Days Pending
+                </label>
                 <input
                   type="number"
                   min="0"
                   required
                   value={formData.approval_days_pending}
                   onChange={e => handleInputChange('approval_days_pending', e.target.value)}
-                  className="w-full rounded-lg border border-gray-300 px-3.5 py-2 text-sm text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-400/20"
+                  className="w-full rounded-lg border border-slate-300 px-3 py-2 text-xs font-mono text-slate-900 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400/20"
                   placeholder="96"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-gray-700 mb-1.5">Legal Cases Count</label>
+                <label className="block text-[11px] font-mono font-bold text-slate-700 mb-1">
+                  Court Litigations (Sec 64)
+                </label>
                 <input
                   type="number"
                   min="0"
                   required
                   value={formData.legal_cases_count}
                   onChange={e => handleInputChange('legal_cases_count', e.target.value)}
-                  className="w-full rounded-lg border border-gray-300 px-3.5 py-2 text-sm text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-400/20"
+                  className="w-full rounded-lg border border-slate-300 px-3 py-2 text-xs font-mono text-slate-900 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400/20"
                   placeholder="8"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-gray-700 mb-1.5">Ownership Disputes</label>
+                <label className="block text-[11px] font-mono font-bold text-slate-700 mb-1">
+                  Title & Boundary Disputes
+                </label>
                 <input
                   type="number"
                   min="0"
                   required
                   value={formData.ownership_disputes}
                   onChange={e => handleInputChange('ownership_disputes', e.target.value)}
-                  className="w-full rounded-lg border border-gray-300 px-3.5 py-2 text-sm text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-400/20"
+                  className="w-full rounded-lg border border-slate-300 px-3 py-2 text-xs font-mono text-slate-900 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400/20"
                   placeholder="5"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-gray-700 mb-1.5">Doc Deficiency Score (%)</label>
+                <label className="block text-[11px] font-mono font-bold text-slate-700 mb-1">
+                  Doc Deficiency Score (%)
+                </label>
                 <input
                   type="number"
                   min="0"
@@ -851,13 +903,15 @@ export default function EarlyWarningPredictor() {
                   required
                   value={formData.doc_deficiency_score}
                   onChange={e => handleInputChange('doc_deficiency_score', e.target.value)}
-                  className="w-full rounded-lg border border-gray-300 px-3.5 py-2 text-sm text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-400/20"
+                  className="w-full rounded-lg border border-slate-300 px-3 py-2 text-xs font-mono text-slate-900 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400/20"
                   placeholder="35"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-gray-700 mb-1.5">District Delay Avg (Days)</label>
+                <label className="block text-[11px] font-mono font-bold text-slate-700 mb-1">
+                  District Delay Avg (Days)
+                </label>
                 <input
                   type="number"
                   min="0"
@@ -865,7 +919,7 @@ export default function EarlyWarningPredictor() {
                   required
                   value={formData.historical_district_delay_avg}
                   onChange={e => handleInputChange('historical_district_delay_avg', e.target.value)}
-                  className="w-full rounded-lg border border-gray-300 px-3.5 py-2 text-sm text-gray-900 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-400/20"
+                  className="w-full rounded-lg border border-slate-300 px-3 py-2 text-xs font-mono text-slate-900 focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400/20"
                   placeholder="18"
                 />
               </div>
@@ -873,24 +927,25 @@ export default function EarlyWarningPredictor() {
           </div>
 
           {/* Action Row */}
-          <div className="border-t border-gray-100 pt-5 flex items-center justify-between">
-            <div className="text-xs text-gray-500">
-              Project Name: <strong>{formData.project_name || 'Manual Project Assessment'}</strong>
+          <div className="p-5 bg-slate-50 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div className="text-xs font-mono text-slate-600">
+              Active Evaluation Target: <strong>{formData.project_name || 'Empirical Scenario Assessment'}</strong>
             </div>
+
             <button
               type="submit"
               disabled={loading}
-              className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-xl shadow-xs transition-colors disabled:opacity-50 text-sm cursor-pointer"
+              className="inline-flex items-center gap-2 bg-blue-700 hover:bg-blue-800 text-white font-bold py-3 px-6 rounded-xl shadow-xs transition-colors disabled:opacity-50 text-xs cursor-pointer"
             >
               {loading ? (
                 <>
-                  <RefreshCw size={16} className="animate-spin" />
-                  Running XGBoost Model & SHAP Explainer...
+                  <RefreshCw size={15} className="animate-spin" />
+                  Running Multi-Class XGBoost & SHAP Attribution...
                 </>
               ) : (
                 <>
-                  <Sparkles size={16} />
-                  Analyze Project Risk
+                  <Sparkles size={15} />
+                  Evaluate Delay Risk & Attribution
                 </>
               )}
             </button>
