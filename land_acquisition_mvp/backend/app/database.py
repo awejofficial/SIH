@@ -13,6 +13,10 @@ from sqlalchemy.sql import func
 DEFAULT_URL = "sqlite:///./land_acquisition.db"
 DATABASE_URL = os.environ.get("DATABASE_URL", DEFAULT_URL)
 
+# Render & Heroku compatibility: SQLAlchemy 2.0 requires postgresql:// instead of postgres://
+if DATABASE_URL.startswith("postgres://"):
+    DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
+
 engine = create_engine(
     DATABASE_URL, 
     connect_args={"check_same_thread": False} if "sqlite" in DATABASE_URL else {}
