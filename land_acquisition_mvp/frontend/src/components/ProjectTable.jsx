@@ -8,10 +8,7 @@ import {
   ChevronRight,
   FileCheck2,
   AlertCircle,
-  ShieldAlert,
-  Scale,
-  SlidersHorizontal,
-  ExternalLink
+  Scale
 } from 'lucide-react'
 
 /**

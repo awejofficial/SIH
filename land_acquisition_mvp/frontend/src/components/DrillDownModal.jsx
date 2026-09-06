@@ -72,8 +72,9 @@ export default function DrillDownModal({ project, onClose, onOpenIntervention })
         setPrediction(resp.data)
         setPredError(null)
 
-        // Initialize slider with current project value
-        const initialVal = project[selectedFeature] !== undefined ? project[selectedFeature] : 50
+        // Initialize slider with default feature value
+        const initialVal = project.compensation_disbursed_pct !== undefined ? project.compensation_disbursed_pct : 50
+        setSelectedFeature('compensation_disbursed_pct')
         setSliderValue(initialVal)
       } catch (err) {
         console.error('Project drill-down prediction failed:', err)

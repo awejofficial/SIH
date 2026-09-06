@@ -199,7 +199,7 @@ export default function GISMap({
             ? 'background: #0f2347; border: 1px solid #1e40af; color: #60a5fa;'
             : 'background: #2a1215; border: 1px solid #7f1d1d; color: #f87171;'
         }">
-          <span>${hasIntervention ? '✅' : '⚠️'}</span>
+          <span style="font-size: 10px; font-weight: 700;">${hasIntervention ? '● Action Logged:' : '▲ Pending Action:'}</span>
           <span style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
             ${hasIntervention ? p.intervention_taken : 'Statutory Action Mandated'}
           </span>

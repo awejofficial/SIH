@@ -12,7 +12,6 @@ import {
   ShieldCheck,
   RefreshCw,
   X,
-  Sparkles,
   RotateCcw,
   ArrowRight
 } from 'lucide-react'
@@ -256,8 +255,8 @@ export default function GISMapPage() {
                 className="w-full px-2.5 py-1.5 bg-slate-800/90 border border-slate-700 rounded-lg text-slate-200 text-xs font-mono font-medium focus:outline-none focus:border-blue-500 cursor-pointer"
               >
                 <option value="All">Status: All</option>
-                <option value="ActionNeeded">⚠️ Action Needed</option>
-                <option value="Logged">✅ Intervention Logged</option>
+                <option value="ActionNeeded">Action Needed</option>
+                <option value="Logged">Intervention Logged</option>
               </select>
             </div>
 
@@ -447,8 +446,8 @@ export default function GISMapPage() {
               to="/predict-risk"
               className="w-full bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white font-bold py-2 px-4 rounded-xl text-xs transition-colors flex items-center justify-center gap-1.5 cursor-pointer font-mono"
             >
-              <Sparkles size={12} className="text-amber-400" />
-              <span>Full Predictive Analysis (Why / SHAP)</span>
+              <span>Full Predictive Analysis (SHAP Drivers)</span>
+              <ArrowRight size={13} className="text-blue-400" />
             </Link>
           </div>
         </div>

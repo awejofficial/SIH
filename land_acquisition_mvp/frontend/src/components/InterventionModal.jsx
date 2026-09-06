@@ -4,17 +4,9 @@ import RiskCategoryBadge from './intelligence/RiskCategoryBadge'
 import {
   X,
   ShieldAlert,
-  FileCheck2,
   Send,
-  Building2,
   Scale,
-  Sparkles,
-  AlertTriangle,
-  Clock,
-  CheckCircle2,
-  Calendar,
-  Layers,
-  ArrowRight
+  CheckCircle2
 } from 'lucide-react'
 
 // Official Administrative Revenue Directives mapped to RFCTLARR Act statutory powers
@@ -227,9 +219,9 @@ export default function InterventionModal({ project, onClose, onUpdate }) {
 
                 {/* System Administrative Direction */}
                 <div className="p-4 rounded-xl bg-blue-50/70 border border-blue-200 text-xs text-blue-950 space-y-1.5">
-                  <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-blue-800 flex items-center gap-1">
-                    <Sparkles size={12} />
-                    <span>Algorithmic Recommendation:</span>
+                  <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-blue-800 flex items-center gap-1.5">
+                    <Scale size={13} className="text-blue-700" />
+                    <span>Statutory Recommendation:</span>
                   </span>
                   <p className="leading-relaxed text-slate-800 font-medium">
                     {prediction.recommendation}

@@ -24,7 +24,7 @@ export default function Topbar({ onToggleSidebar }) {
     '/predict-risk': {
       section: 'Predictive Analytics',
       page: 'Early-Warning Delay Predictor',
-      subtext: 'XGBoost ML Inference & SHAP Drivers'
+      subtext: 'Calibrated Risk Inference & SHAP Attribution'
     },
     '/analytics': {
       section: 'Portfolio Intelligence',

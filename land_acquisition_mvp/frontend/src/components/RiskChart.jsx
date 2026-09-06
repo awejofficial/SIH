@@ -15,6 +15,27 @@ import {
  * Visualizes the systemic concentration of projects across statutory risk tiers.
  * Incorporates geometric tier indicators (▲, ◆, ■, ●) for universal accessibility.
  */
+function CustomTooltip({ active, payload }) {
+  if (active && payload && payload.length) {
+    const item = payload[0].payload
+    return (
+      <div className="bg-white border border-slate-300 rounded-lg p-3 shadow-lg text-xs space-y-1">
+        <div className="font-bold text-slate-900 flex items-center gap-1.5">
+          <span className="font-mono text-slate-400">{item.symbol || '●'}</span>
+          <span>{item.name}</span>
+        </div>
+        <div className="text-slate-600 font-mono">
+          Parcels in Tier: <strong className="text-slate-900 text-sm">{item.count}</strong>
+        </div>
+        <div className="text-[10px] text-slate-400 font-mono">
+          {item.meaning || 'Statutory RFCTLARR monitoring tier'}
+        </div>
+      </div>
+    )
+  }
+  return null
+}
+
 export default function RiskChart({ data }) {
   if (!data || data.length === 0) {
     return (
@@ -22,27 +43,6 @@ export default function RiskChart({ data }) {
         No portfolio data available for distribution analysis.
       </div>
     )
-  }
-
-  const CustomTooltip = ({ active, payload }) => {
-    if (active && payload && payload.length) {
-      const item = payload[0].payload
-      return (
-        <div className="bg-white border border-slate-300 rounded-lg p-3 shadow-lg text-xs space-y-1">
-          <div className="font-bold text-slate-900 flex items-center gap-1.5">
-            <span className="font-mono text-slate-400">{item.symbol || '●'}</span>
-            <span>{item.name}</span>
-          </div>
-          <div className="text-slate-600 font-mono">
-            Parcels in Tier: <strong className="text-slate-900 text-sm">{item.count}</strong>
-          </div>
-          <div className="text-[10px] text-slate-400 font-mono">
-            {item.meaning || 'Statutory RFCTLARR monitoring tier'}
-          </div>
-        </div>
-      )
-    }
-    return null
   }
 
   return (

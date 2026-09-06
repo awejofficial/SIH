@@ -9,7 +9,6 @@ import InterventionModal from '../components/InterventionModal'
 import { useRole } from '../context/RoleContext'
 import {
   ShieldAlert,
-  Sparkles,
   Building2,
   Gauge,
   ArrowRight,
@@ -177,8 +176,7 @@ export default function CommandCenter() {
             to="/predict-risk"
             className="inline-flex items-center gap-2 bg-blue-700 hover:bg-blue-800 text-white font-bold px-4 py-2 rounded-lg shadow-xs text-xs transition-colors cursor-pointer"
           >
-            <Sparkles size={14} />
-            Evaluate Delay Risk
+            <span>Evaluate Delay Risk</span>
             <ArrowRight size={13} />
           </Link>
 

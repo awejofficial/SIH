@@ -6,7 +6,7 @@ import { useRole } from '../context/RoleContext'
 import {
   BarChart3,
   Building2,
-  Sparkles,
+  TrendingUp,
   Compass
 } from 'lucide-react'
 
@@ -305,7 +305,7 @@ export default function Analytics() {
       <div className="bg-white rounded-xl border border-slate-200 p-5 shadow-xs space-y-4">
         <div className="flex items-center justify-between border-b border-slate-100 pb-3">
           <div className="flex items-center gap-2">
-            <Sparkles size={16} className="text-blue-700" />
+            <TrendingUp size={16} className="text-blue-700" />
             <h2 className="text-xs font-black uppercase tracking-wider text-slate-900">
               Statewide Policy Levers & Sensitivity Analysis
             </h2>

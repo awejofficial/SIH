@@ -12,7 +12,7 @@ import EarlyWarningTelemetryCard from '../components/intelligence/EarlyWarningTe
 import {
   AlertTriangle,
   CheckCircle2,
-  Sparkles,
+  Activity,
   Layers,
   FileCheck,
   Send,
@@ -434,15 +434,15 @@ export default function EarlyWarningPredictor() {
   return (
     <div className="p-8 max-w-7xl mx-auto w-full space-y-8">
       {/* Header */}
-      <div className="border-b border-gray-200 pb-6">
+      <div className="border-b border-slate-200 pb-6">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
             <div className="flex items-center gap-3">
               <div className="h-10 w-10 bg-blue-600 text-white rounded-xl flex items-center justify-center font-bold shadow-xs">
-                <Sparkles size={22} />
+                <Activity size={22} />
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-gray-900 tracking-tight">
+                <h1 className="text-2xl font-bold text-slate-900 tracking-tight">
                   Early-Warning Delay Prediction
                 </h1>
               </div>
@@ -451,7 +451,7 @@ export default function EarlyWarningPredictor() {
           <div className="flex flex-wrap items-center gap-2.5">
             {/* 3-State ML Model Health Indicator */}
             {modelLoaded === null && (
-              <div className="flex items-center gap-2 bg-gray-50 border border-gray-200 rounded-xl px-3.5 py-2 text-xs font-semibold text-gray-500 shadow-xs">
+              <div className="flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2 text-xs font-semibold text-slate-500 shadow-xs">
                 <RefreshCw size={13} className="animate-spin text-blue-600" />
                 <span>Checking ML service...</span>
               </div>
@@ -477,7 +477,7 @@ export default function EarlyWarningPredictor() {
         <div className="bg-red-50 border border-red-200 text-red-800 p-4 rounded-xl text-sm font-medium flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-xs">
           <div className="flex items-center gap-2">
             <AlertTriangle size={18} className="text-red-600 shrink-0" />
-            <span>⚠️ ML model artifacts not loaded.</span>
+            <span>ML model artifacts not loaded.</span>
           </div>
           <button
             type="button"
@@ -490,8 +490,8 @@ export default function EarlyWarningPredictor() {
       )}
 
       {/* Preset Buttons */}
-      <div className="bg-white rounded-xl border border-gray-200 p-4 shadow-xs">
-        <div className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-3 flex items-center gap-2">
+      <div className="bg-white rounded-xl border border-slate-200 p-4 shadow-xs">
+        <div className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3 flex items-center gap-2">
           <Layers size={14} className="text-blue-600" />
           Quick-Load Evaluator Test Scenarios
         </div>
@@ -504,13 +504,13 @@ export default function EarlyWarningPredictor() {
               className={`text-left p-3 rounded-lg border transition-all text-xs font-medium flex flex-col justify-between group cursor-pointer ${
                 activePresetKey === key
                   ? 'border-blue-500 bg-blue-50/70 shadow-xs ring-1 ring-blue-400/30'
-                  : 'border-gray-200 bg-gray-50 hover:bg-blue-50/40 hover:border-blue-300'
+                  : 'border-slate-200 bg-slate-50 hover:bg-blue-50/40 hover:border-blue-300'
               }`}
             >
-              <span className="font-semibold text-gray-900 group-hover:text-blue-700">
+              <span className="font-semibold text-slate-900 group-hover:text-blue-700">
                 {preset.name.split(' (')[0]}
               </span>
-              <span className="text-[11px] text-gray-500 mt-1">
+              <span className="text-[11px] text-slate-500 mt-1">
                 {preset.name.includes('(') ? preset.name.split(' (')[1].replace(')', '') : ''}
               </span>
             </button>
@@ -519,15 +519,15 @@ export default function EarlyWarningPredictor() {
       </div>
 
       {/* Search Existing Project Section */}
-      <div className="bg-white rounded-xl border border-gray-200 p-5 shadow-xs relative" ref={searchContainerRef}>
+      <div className="bg-white rounded-xl border border-slate-200 p-5 shadow-xs relative" ref={searchContainerRef}>
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
           <div className="flex items-center gap-2">
             <Search size={16} className="text-blue-600" />
-            <h2 className="text-sm font-bold text-gray-900 uppercase tracking-wide">
+            <h2 className="text-sm font-bold text-slate-900 uppercase tracking-wide">
               Search Existing Project
             </h2>
           </div>
-          <span className="text-[11px] font-medium text-gray-500 bg-gray-100 px-2.5 py-0.5 rounded-full">
+          <span className="text-[11px] font-medium text-slate-500 bg-slate-100 px-2.5 py-0.5 rounded-full">
             Search by Project ID, District or Project Type
           </span>
         </div>
@@ -535,7 +535,7 @@ export default function EarlyWarningPredictor() {
         {/* Search Input Bar */}
         <div className="relative">
           <div className="relative flex items-center">
-            <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-gray-400">
+            <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
               <Search size={18} />
             </div>
             <input
@@ -553,8 +553,8 @@ export default function EarlyWarningPredictor() {
                 }
               }}
               onKeyDown={handleSearchKeyDown}
-              placeholder="🔍 Search by Project ID, District or Project Type... (e.g. PRJ-2026-184, Pune, Highway)"
-              className="w-full pl-10 pr-28 py-2.5 bg-gray-50 hover:bg-white focus:bg-white border border-gray-300 focus:border-blue-500 rounded-lg text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400/20 transition-all"
+              placeholder="Search by Project ID, District or Project Type... (e.g. PRJ-2026-184, Pune, Highway)"
+              className="w-full pl-10 pr-28 py-2.5 bg-slate-50 hover:bg-white focus:bg-white border border-slate-300 focus:border-blue-500 rounded-lg text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-400/20 transition-all"
             />
             <div className="absolute inset-y-0 right-0 pr-3 flex items-center gap-1.5">
               {searchLoading && (
@@ -568,13 +568,13 @@ export default function EarlyWarningPredictor() {
                     setSearchResults([])
                     setSearchOpen(false)
                   }}
-                  className="text-gray-400 hover:text-gray-600 p-1 rounded-md transition-colors"
+                  className="text-slate-400 hover:text-slate-600 p-1 rounded-md transition-colors"
                   title="Clear search"
                 >
                   <X size={16} />
                 </button>
               )}
-              <span className="text-[11px] text-gray-400 border-l border-gray-200 pl-2 font-mono">
+              <span className="text-[11px] text-slate-400 border-l border-slate-200 pl-2 font-mono">
                 5,000 DB Records
               </span>
             </div>
@@ -582,17 +582,17 @@ export default function EarlyWarningPredictor() {
 
           {/* Dynamic Search Dropdown Panel */}
           {searchOpen && (searchQuery.trim().length > 0 || searchResults.length > 0 || searchLoading) && (
-            <div className="absolute z-30 left-0 right-0 mt-1.5 bg-white border border-gray-200 rounded-xl shadow-xl overflow-hidden animate-fadeIn max-h-80 overflow-y-auto">
+            <div className="absolute z-30 left-0 right-0 mt-1.5 bg-white border border-slate-200 rounded-xl shadow-xl overflow-hidden animate-fadeIn max-h-80 overflow-y-auto">
               {searchLoading ? (
-                <div className="p-6 text-center text-gray-500 text-xs flex items-center justify-center gap-2">
+                <div className="p-6 text-center text-slate-500 text-xs flex items-center justify-center gap-2">
                   <RefreshCw size={16} className="animate-spin text-blue-600" />
                   <span>Searching project registry...</span>
                 </div>
               ) : searchResults.length > 0 ? (
-                <div className="divide-y divide-gray-100">
-                  <div className="px-4 py-2 bg-gray-50 text-[11px] font-bold text-gray-500 uppercase tracking-wider flex justify-between items-center">
+                <div className="divide-y divide-slate-100">
+                  <div className="px-4 py-2 bg-slate-50 text-[11px] font-bold text-slate-500 uppercase tracking-wider flex justify-between items-center">
                     <span>Matching Projects ({searchResults.length})</span>
-                    <span className="text-[10px] lowercase font-normal text-gray-400">Click to auto-fill form parameters</span>
+                    <span className="text-[10px] lowercase font-normal text-slate-400">Click to auto-fill form parameters</span>
                   </div>
                   {searchResults.map((proj, idx) => {
                     const isSelected = activeSearchIndex === idx
@@ -602,7 +602,7 @@ export default function EarlyWarningPredictor() {
                         onClick={() => handleSelectProject(proj)}
                         onMouseEnter={() => setActiveSearchIndex(idx)}
                         className={`p-3.5 cursor-pointer transition-colors flex items-center justify-between gap-4 ${
-                          isSelected ? 'bg-blue-50/80 border-l-4 border-l-blue-600' : 'hover:bg-gray-50 border-l-4 border-l-transparent'
+                          isSelected ? 'bg-blue-50/80 border-l-4 border-l-blue-600' : 'hover:bg-slate-50 border-l-4 border-l-transparent'
                         }`}
                       >
                         <div className="min-w-0 flex-1">
@@ -610,12 +610,12 @@ export default function EarlyWarningPredictor() {
                             <span className="font-mono text-xs font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200">
                               {proj.formatted_id}
                             </span>
-                            <h4 className="text-sm font-semibold text-gray-900 truncate">
+                            <h4 className="text-sm font-semibold text-slate-900 truncate">
                               {proj.project_name}
                             </h4>
                           </div>
-                          <div className="flex items-center gap-3 mt-1 text-xs text-gray-500">
-                            <span className="font-medium text-gray-700">{proj.district} • {proj.project_type}</span>
+                          <div className="flex items-center gap-3 mt-1 text-xs text-slate-500">
+                            <span className="font-medium text-slate-700">{proj.district} • {proj.project_type}</span>
                             <span>•</span>
                             <span>{proj.total_acres} Acres</span>
                             <span>•</span>
@@ -629,16 +629,16 @@ export default function EarlyWarningPredictor() {
                           <span className="text-xs font-semibold text-blue-600 bg-blue-50/80 hover:bg-blue-100 px-2.5 py-1 rounded-md border border-blue-200 transition-colors">
                             Select Project
                           </span>
-                          <ArrowRight size={15} className={`text-gray-400 ${isSelected ? 'text-blue-600 translate-x-0.5' : ''} transition-all`} />
+                          <ArrowRight size={15} className={`text-slate-400 ${isSelected ? 'text-blue-600 translate-x-0.5' : ''} transition-all`} />
                         </div>
                       </div>
                     )
                   })}
                 </div>
               ) : (
-                <div className="p-6 text-center text-gray-500 space-y-1">
-                  <p className="text-xs font-semibold text-gray-700">No projects found matching "{searchQuery}"</p>
-                  <p className="text-[11px] text-gray-400">
+                <div className="p-6 text-center text-slate-500 space-y-1">
+                  <p className="text-xs font-semibold text-slate-700">No projects found matching "{searchQuery}"</p>
+                  <p className="text-[11px] text-slate-400">
                     Try searching by ID (e.g. "PRJ-2026-184", "184"), District ("Pune", "Nagpur", "Nashik"), or Sector ("Highway", "Metro").
                   </p>
                 </div>
@@ -944,7 +944,7 @@ export default function EarlyWarningPredictor() {
                 </>
               ) : (
                 <>
-                  <Sparkles size={15} />
+                  <Activity size={15} />
                   Evaluate Delay Risk & Attribution
                 </>
               )}
@@ -955,8 +955,9 @@ export default function EarlyWarningPredictor() {
 
       {/* General Prediction Error (do not duplicate if already showing model warning) */}
       {error && (error !== 'ML model artifacts not loaded.' || modelLoaded !== false) && (
-        <div className="bg-red-50 border border-red-200 text-red-800 p-4 rounded-xl text-sm font-medium">
-          ⚠️ {error}
+        <div className="bg-red-50 border border-red-200 text-red-800 p-4 rounded-xl text-sm font-medium flex items-center gap-2">
+          <AlertTriangle size={16} className="text-red-600 shrink-0" />
+          <span>{error}</span>
         </div>
       )}
 
@@ -1019,25 +1020,25 @@ export default function EarlyWarningPredictor() {
           />
 
           {/* 6. Intervention Logging */}
-          <div className="bg-white rounded-2xl border border-gray-200 shadow-xs p-6 space-y-4">
+          <div className="bg-white rounded-xl border border-slate-200 shadow-xs p-6 space-y-4">
             <div>
-              <h3 className="text-base font-bold text-gray-900 flex items-center gap-2">
+              <h3 className="text-base font-bold text-slate-900 flex items-center gap-2">
                 <FileCheck size={18} className="text-emerald-600" />
                 Log Administrative Intervention (Outcome & Learning Dataset)
               </h3>
-              <p className="text-xs text-gray-500">
+              <p className="text-xs text-slate-500">
                 Records interventions to audit logs and feedback datasets for controlled model retraining.
               </p>
             </div>
 
             <form onSubmit={handleLogIntervention} className="grid grid-cols-1 md:grid-cols-3 gap-4 items-end pt-2">
               <div className="md:col-span-1">
-                <label className="block text-xs font-bold text-gray-700 mb-1.5">Administrative Action Taken</label>
+                <label className="block text-xs font-bold text-slate-700 mb-1.5">Administrative Action Taken</label>
                 <select
                   value={interventionText}
                   onChange={e => setInterventionText(e.target.value)}
                   required
-                  className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-xs font-medium text-gray-900 focus:outline-none focus:border-blue-500"
+                  className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-medium text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
                 >
                   <option value="">Select official intervention...</option>
                   <option value="Direct DBT Compensation Release Batch Sanctioned">Direct DBT Compensation Release Batch Sanctioned</option>
@@ -1049,13 +1050,13 @@ export default function EarlyWarningPredictor() {
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-gray-700 mb-1.5">Intervention Date</label>
+                <label className="block text-xs font-bold text-slate-700 mb-1.5">Intervention Date</label>
                 <input
                   type="date"
                   required
                   value={interventionDate}
                   onChange={e => setInterventionDate(e.target.value)}
-                  className="w-full rounded-lg border border-gray-300 px-3 py-2 text-xs font-medium text-gray-900 focus:outline-none focus:border-blue-500"
+                  className="w-full rounded-lg border border-slate-300 px-3 py-2 text-xs font-medium text-slate-900 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
                 />
               </div>
 

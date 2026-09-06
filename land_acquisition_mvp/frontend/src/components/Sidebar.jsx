@@ -2,7 +2,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import {
   LayoutDashboard,
-  Sparkles,
+  Calculator,
   BarChart3,
   Map,
   Activity,
@@ -21,7 +21,7 @@ export default function Sidebar({ isOpen, onClose }) {
 
   const operationalLinks = [
     { to: '/', icon: <LayoutDashboard size={18} />, label: 'Command Center', badge: 'Live' },
-    { to: '/predict-risk', icon: <Sparkles size={18} />, label: 'Early-Warning Predictor', badge: 'ML' },
+    { to: '/predict-risk', icon: <Calculator size={18} />, label: 'Early-Warning Predictor', badge: 'ML' },
     { to: '/map', icon: <Map size={18} />, label: 'Spatial Risk Map', badge: 'GIS' },
     { to: '/analytics', icon: <BarChart3 size={18} />, label: 'Portfolio Analytics', badge: null }
   ]
